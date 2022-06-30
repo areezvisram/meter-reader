@@ -1,1 +1,19 @@
-<h1>Hello</h1>
+<h1>Meter Reader</h1>
+
+<p><%= @meter.id %></p>
+<%= ('<img src="data:image/jpg;base64,%s">' % Base64.encode64(@meter.meter_object)).html_safe %>
+<h2>Reading</h2>
+
+<%= form_with :controller => "dashboards", :action => "check_reading", remote: true, local: true, method: 'get' do |f| %>
+    <%= f.number_field :reading, :value => '' %>
+    <%= f.hidden_field :counter, :value => @counter + 1%>    
+    <%= f.submit 'Submit' %>
+<% end %>
+
+<% if @show_result %>
+    <% if @correct %>
+        <p>Correct Answer</p>
+    <% else %>
+        <p>Incorrect Answer</p>
+    <% end %>
+<% end %>

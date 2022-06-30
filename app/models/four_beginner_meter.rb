@@ -1,0 +1,2 @@
+class FourBeginnerMeter < ApplicationRecord
+end
